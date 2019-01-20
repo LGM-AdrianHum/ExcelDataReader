@@ -1846,5 +1846,22 @@ namespace ExcelDataReader.Netstandard20.Tests
                 Assert.AreEqual("\\A@\\B", reader.GetNumberFormatString(0));
             }
         }
+
+        [TestMethod]
+        public void GitIssue_375_Ixfe_RowMap()
+        {
+            // This reads a specially crafted XLS which loads in Excel:
+            // - 100 rows with IXFE records
+            // Verify the internal map of cell offsets used for buffering includes the preceding IXFE records
+            using (var reader = ExcelReaderFactory.CreateBinaryReader(Configuration.GetTestWorkbook("Test_git_issue_375_ixfe_rowmap.xls")))
+            {
+                for (var i = 0; i < 100; i++)
+                {
+                    reader.Read();
+                    Assert.AreEqual(1234.0 + i + (i / 10.0), reader[0]);
+                    Assert.AreEqual("0.000", reader.GetNumberFormatString(0));
+                }
+            }
+        }
     }
 }

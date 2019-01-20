@@ -182,6 +182,7 @@ namespace ExcelDataReader.Tests
             { "Test_git_issue_368_formats.xls", "Test_git_issue_368_formats.xls" },
             { "Test_git_issue_368_ixfe.xls", "Test_git_issue_368_ixfe.xls" },
             { "Test_git_issue_368_label_xf.xls", "Test_git_issue_368_label_xf.xls" },
+            { "Test_git_issue_375_ixfe_rowmap.xls", "Test_git_issue_375_ixfe_rowmap.xls" },
         };
 
         public static Stream GetTestWorkbook(string key)
